@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Os Pia Meet — compartilhe a tela com os amigos</title>
+  <meta name="description" content="App de desktop para reunir os amigos e compartilhar tela, janela ou aplicativo em alta qualidade, com som e chat. Ponto a ponto, sem servidor.">
+  <link rel="icon" href="icon.png">
+  <style>
+    :root { --bg: #0a0c14; --panel: #121522; --line: rgba(255,255,255,.09); --text: #eef0f7; --muted: #9096ad; --grad: linear-gradient(135deg, #8b5cff, #2f9bff); }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif; overflow-x: hidden; }
+    a { color: #8fc4ff; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    header { position: relative; text-align: center; padding: 84px 0 72px; }
+    header::before, header::after { content: ""; position: absolute; z-index: -1; width: 760px; height: 760px; border-radius: 50%; }
+    header::before { background: radial-gradient(closest-side, rgba(139,92,255,.34), transparent); top: -330px; left: calc(50% - 640px); }
+    header::after { background: radial-gradient(closest-side, rgba(47,155,255,.28), transparent); top: -180px; left: calc(50% - 60px); }
+    .logo { width: 132px; height: 132px; filter: drop-shadow(0 18px 40px rgba(124,92,255,.5)); }
+    h1 { margin: 22px 0 8px; font-size: clamp(36px, 7vw, 60px); letter-spacing: -.03em; line-height: 1.05; }
+    .lead { margin: 0 auto; max-width: 640px; color: var(--muted); font-size: clamp(16px, 2.4vw, 20px); }
+
+    .cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 16px; font-weight: 700; font-size: 17px; text-decoration: none; color: #fff; transition: transform .12s, filter .12s; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn.primary { background: var(--grad); box-shadow: 0 14px 34px rgba(124,92,255,.42); }
+    .btn.ghost { background: rgba(255,255,255,.06); border: 1px solid var(--line); font-weight: 600; }
+    .btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .meta { margin-top: 14px; color: var(--muted); font-size: 14px; }
+
+    h2 { margin: 0 0 22px; font-size: 28px; letter-spacing: -.02em; text-align: center; }
+    section { padding: 44px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { padding: 22px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); }
+    .card h3 { margin: 10px 0 6px; font-size: 17px; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .emoji { font-size: 26px; }
+
+    ol.steps { max-width: 680px; margin: 0 auto; padding: 0; list-style: none; counter-reset: s; }
+    ol.steps li { position: relative; padding: 0 0 20px 58px; counter-increment: s; }
+    ol.steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: var(--grad); font-weight: 700; }
+    ol.steps b { display: block; }
+    ol.steps span { color: var(--muted); font-size: 15px; }
+
+    .note { max-width: 760px; margin: 0 auto; padding: 18px 22px; border-radius: 16px; background: rgba(255,182,39,.08); border: 1px solid rgba(255,182,39,.28); color: #f1dfb5; font-size: 15px; }
+    footer { padding: 40px 0 60px; text-align: center; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <img class="logo" src="logo.svg" alt="Logo do Os Pia Meet: um monitor sorridente de boné">
+    <h1>Os Pia Meet</h1>
+    <p class="lead">Junte os piá e compartilhe tela, janela ou jogo em alta qualidade — com som e chat. Direto de um PC para o outro, sem servidor no meio.</p>
+    <div class="cta">
+      <a class="btn primary" id="dlSetup" href="#">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Baixar para Windows
+      </a>
+      <a class="btn ghost" id="dlPortable" href="#">Versão portátil</a>
+    </div>
+    <p class="meta">Windows 10 ou 11 · 64 bits · gratuito</p>
+  </header>
+
+  <main class="wrap">
+    <section>
+      <h2>O que ele faz</h2>
+      <div class="grid">
+        <div class="card"><div class="emoji">🖥️</div><h3>Tela, janela ou aplicativo</h3><p>Escolha por miniatura o que transmitir, de 720p até a resolução nativa a 60 fps.</p></div>
+        <div class="card"><div class="emoji">🔊</div><h3>Som só do que importa</h3><p>Ao compartilhar uma janela, vai só o som daquele aplicativo. No modo computador inteiro, o Discord fica de fora.</p></div>
+        <div class="card"><div class="emoji">🚪</div><h3>Sala padrão</h3><p>Guarde o código do grupo uma vez: o app abre direto na sala de vocês, sempre a mesma.</p></div>
+        <div class="card"><div class="emoji">⚡</div><h3>Leve</h3><p>Usa o encoder da placa de vídeo e troca de codec sozinho se algum espectador ficar sem imagem.</p></div>
+        <div class="card"><div class="emoji">🔒</div><h3>Privado</h3><p>Conexão criptografada ponto a ponto. O código da sala nunca sai do seu PC e cada conexão é autenticada com ele.</p></div>
+        <div class="card"><div class="emoji">💬</div><h3>Chat e câmera</h3><p>Converse por texto, ligue a câmera e veja várias transmissões ao mesmo tempo.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Como usar</h2>
+      <ol class="steps">
+        <li><b>Baixe e instale</b><span>O instalador cria o atalho “Os Pia Meet” no Menu Iniciar e na área de trabalho.</span></li>
+        <li><b>Crie a sala</b><span>Digite seu nome, clique em “Criar sala nova” e copie o código.</span></li>
+        <li><b>Chame a galera</b><span>Cada um digita o código e marca “Usar como minha sala padrão”. Nas próximas vezes é só abrir o app.</span></li>
+        <li><b>Compartilhe</b><span>Clique em “Compartilhar”, escolha a tela ou a janela e pronto.</span></li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="note">
+        <b>Aviso do Windows.</b> O app não tem assinatura digital paga, então o Windows pode mostrar “O Windows protegeu o computador” ao instalar. Clique em <b>Mais informações → Executar assim mesmo</b>.
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">Feito pelos piá, para os piá.</footer>
+
+  <script>
+    // Em usuario.github.io/repositorio, os links apontam sozinhos para a última versão publicada.
+    (function () {
+      var user = location.hostname.split('.')[0];
+      var repo = location.pathname.split('/').filter(Boolean)[0];
+      if (!/\.github\.io$/.test(location.hostname) || !repo) return;
+      var base = 'https://github.com/' + user + '/' + repo;
+      document.getElementById('dlSetup').href = base + '/releases/latest/download/OsPiaMeet-Setup.exe';
+      document.getElementById('dlPortable').href = base + '/releases/latest/download/OsPiaMeet-Portatil.exe';
+    })();
+  </script>
+</body>
+</html>
